@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Policy xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:permit-overrides"
+  PolicyId="urn:nl:tue:sec:example:sample:demo:cairis:asset:threat"
+  xsi:schemaLocation="urn:oasis:names:tc:xacml:2.0:policy:schema:os http://docs.oasis-open.org/xacml/access_control-xacml-2.0-policy-schema-os.xsd">
+	
+  <Target>
+    <Resources>  
+      <Resource>  
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">  
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">  
+            ICT_Application
+          </AttributeValue>  
+          <ResourceAttributeDesignator 
+          	AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+			DataType="http://www.w3.org/2001/XMLSchema#string"/>
+        </ResourceMatch>  
+      </Resource>
+      <Resource>  
+        <ResourceMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">  
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">  
+            Enumeration
+          </AttributeValue>  
+          <ResourceAttributeDesignator 
+          	AttributeId="urn:oasis:names:tc:xacml:2.0:resource:threat"
+			DataType="http://www.w3.org/2001/XMLSchema#string"/>
+        </ResourceMatch>  
+      </Resource>	  
+    </Resources> 
+    <Actions>
+      <Action>
+        <ActionMatch MatchId="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+          <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">
+            read
+          </AttributeValue>
+          <ActionAttributeDesignator
+            	AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"
+            	DataType="http://www.w3.org/2001/XMLSchema#string"/>
+        </ActionMatch>
+      </Action>
+    </Actions>
+  </Target>
+	
+  <Rule Effect="Permit" RuleId="urn:nl:tue:sec:example:sample:demo:cairis:rule:1">
+		
+		<Condition>
+			<Apply FunctionId="urn:bu:udf:cairis:risk:level:asset:threat:type">
+			   <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"> 
+			       <ResourceAttributeDesignator
+						AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
+						DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+			   </Apply>
+			   <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"> 
+			       <ResourceAttributeDesignator
+						AttributeId="urn:oasis:names:tc:xacml:2.0:resource:threat"
+						DataType="http://www.w3.org/2001/XMLSchema#string"/> 
+			   </Apply>
+					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">
+						10
+					</AttributeValue>
+			</Apply>
+		</Condition>
+	</Rule>
+	<Rule Effect="Deny" RuleId="urn:nl:tue:sec:example:sample:demo:cairis:rule:2" />
+		
+</Policy>
+
+
+
+					
