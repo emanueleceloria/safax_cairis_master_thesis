@@ -27,3 +27,5 @@ In this package 1 file is present:
 For the implementation of the code I tried to be as much as I could coherent with the main implementation of Safax both from the organizational point of view and the coding point of view.
 
 In the folder "db_test" is present a script to create a safax risk table that simulates the risks retrieved by CAIRIS and that can be used to test the cairis module if for example CAIRIS service is not available
+
+In the folder "example_policies_requests" are present the risk policies and requests, each one tests a different cairis api
