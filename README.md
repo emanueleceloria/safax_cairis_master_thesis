@@ -24,5 +24,6 @@ In this package 4 files are present:
 In this package 1 file is present:
 - CairisService.class  : core part of the implementation, it's the part where cairis' udfs are received, elaborated, requests towards CAIRIS are performed in order to retrieve risk values and finally the risk itself is evaluated against the threshold in order to support the final authorization decision
 
-
 For the implementation of the code I tried to be as much as I could coherent with the main implementation of Safax both from the organizational point of view and the coding point of view.
+
+In the folder "db_test" is present a script to create a safax risk table that simulates the risks retrieved by CAIRIS and that can be used to test the cairis module if for example CAIRIS service is not available
