@@ -3,7 +3,7 @@ Code developed to support integration between Cairis and Safax projects
 
 Folder named "cairis" represents the cairis module implemented on Safax
 
-In folder WEB-INF/classes it's possible to find all the .class files where the code for the implementation of the cairis module is present, in particular they are organized in 3 packages:
+In folder WEB-INF/classes it's possible to find all the .class files where the code for the implementation of the cairis module is present, in particular they are organized in 4 packages:
 
 
 1) /nl/tue/sec/cairis/db  :  
@@ -13,7 +13,15 @@ In this package 2 files are present:
 - DBFns.class  : implements all the queries done towards DB
 
 
-2) /nl/tue/sec/cairis/util
+2) /nl/tue/sec/cairis/ws :
+
+In this package 3 files are present:
+- AuthenticationMethods.class : implements authentication methods towards CAIRIS
+- CAIRISRetrievalMethods.class : implements risk's retrieval methods having already a valid session_id
+- EvaluationMethods.class : implements risk's evaluation methods
+
+
+3) /nl/tue/sec/cairis/util
 
 In this package 4 files are present:
 - CairisUtil.class  : implements the writeLog method (parameters and configuration properties to be able to write on the Account Activity                            section on Safax)
@@ -22,7 +30,7 @@ In this package 4 files are present:
 - LogUtil.class  : implements log methods
 
 
-3) /nl/tue/sec/cairis/ws
+4) /nl/tue/sec/cairis/ws
 
 In this package 1 file is present:
 - CairisService.class  : core part of the implementation, it's the part where cairis' udfs are received, elaborated, requests towards CAIRIS are performed in order to retrieve risk values and finally the risk itself is evaluated against the threshold in order to support the final authorization decision
