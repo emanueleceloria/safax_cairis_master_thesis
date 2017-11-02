@@ -13,7 +13,7 @@ In this package 2 files are present:
 - DBFns.class  : implements all the queries done towards DB
 
 
-2) /nl/tue/sec/cairis/ws :
+2) /nl/tue/sec/cairis/impl :
 
 In this package 3 files are present:
 - AuthenticationMethods.class : implements authentication methods towards CAIRIS
