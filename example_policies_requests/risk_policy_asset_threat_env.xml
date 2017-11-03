@@ -23,7 +23,7 @@
             Enumeration
           </AttributeValue>  
           <ResourceAttributeDesignator 
-          	AttributeId="urn:oasis:names:tc:xacml:1.0:resource:threat"
+          	AttributeId="urn:oasis:names:tc:xacml:1.0:resource:threat-id"
 			DataType="http://www.w3.org/2001/XMLSchema#string"/>
         </ResourceMatch>  
       </Resource>
@@ -33,7 +33,7 @@
             Day
           </AttributeValue>  
           <ResourceAttributeDesignator 
-          	AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment"
+          	AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment-id"
 			DataType="http://www.w3.org/2001/XMLSchema#string"/>
         </ResourceMatch>  
       </Resource>	  
@@ -63,12 +63,12 @@
 			   </Apply>
 			   <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"> 
 			       <ResourceAttributeDesignator
-						AttributeId="urn:oasis:names:tc:xacml:1.0:resource:threat"
+						AttributeId="urn:oasis:names:tc:xacml:1.0:resource:threat-id"
 						DataType="http://www.w3.org/2001/XMLSchema#string"/> 
 			   </Apply>
 			   <Apply FunctionId="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only"> 
 			       <ResourceAttributeDesignator
-						AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment"
+						AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment-id"
 						DataType="http://www.w3.org/2001/XMLSchema#string"/> 
 			   </Apply>
 					<AttributeValue DataType="http://www.w3.org/2001/XMLSchema#integer">

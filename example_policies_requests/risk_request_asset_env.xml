@@ -12,7 +12,7 @@
 			</AttributeValue>
 		</Attribute>
 		<Attribute
-			AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment"
+			AttributeId="urn:oasis:names:tc:xacml:1.0:resource:environment-id"
 			DataType="http://www.w3.org/2001/XMLSchema#string">
 			<AttributeValue>
 				Day

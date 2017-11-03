@@ -12,7 +12,7 @@
 			</AttributeValue>
 		</Attribute>
 		<Attribute
-			AttributeId="urn:oasis:names:tc:xacml:2.0:resource:threat"
+			AttributeId="urn:oasis:names:tc:xacml:2.0:resource:threat-id"
 			DataType="http://www.w3.org/2001/XMLSchema#string">
 			<AttributeValue>
 				Enumeration
