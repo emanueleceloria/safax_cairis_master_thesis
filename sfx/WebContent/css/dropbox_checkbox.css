@@ -1,0 +1,94 @@
+checkbox span {
+	color:#fff;
+}
+
+.dropdown dd, .dropdown dt {
+    margin:0px;
+    padding:0px;
+}
+.dropdown ul {
+    margin-top: 5px;
+}
+.dropdown dd {
+    position:relative;
+}
+.dropdown a, 
+.dropdown a:visited {
+    color:#fff;
+    text-decoration:none;
+    outline:none;
+    font-size: 12px;
+}
+.dropdown dt a {
+    background-color:#4F6877;
+    display:block;
+    padding: 8px 20px 5px 10px;
+    min-height: 16px;
+    line-height: 16px;
+    overflow: hidden;
+    border:0;
+    width:545px;
+}
+.dropdown dt a span, .multiSel span {
+    cursor:pointer;
+    display:inline-block;
+    padding: 0 3px 2px 0;
+	color:#fff;
+}
+.dropdown dd ul {
+    background-color: #4F6877;
+    border:0;
+    margin-top: 10px;
+	margin-bottom: 10px;
+    color:#fff;
+    display:none;
+    left:0px;
+    padding: 2px 15px 2px 5px;
+    position:static;
+    top:2px;
+    width:540px;
+    list-style:none;
+    height: 125px;
+    overflow: auto;
+}
+.dropdown span.value {
+    display:none;
+}
+.dropdown dd ul li a {
+    padding:5px;
+    display:block;
+}
+.dropdown dd ul li a:hover {
+    background-color:#fff;
+}
+
+/* override .metro p style/
+.metro p  .multiSel{
+  color:#fff;
+  padding: 50px;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #374954;
+}
+
+/* override .metro dl dd margin left style */
+.metro .dropdown dd {
+	margin-left: 0px;
+}
+
+.configrow_dropdown {
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px #E6E6E6 solid;
+}
+
+.metro ul li {
+	font-size: 9pt;
+}
+
+.metro .dropdown {
+	font-size: 0rem;
+	margin-top: 12px;
+}
+
+

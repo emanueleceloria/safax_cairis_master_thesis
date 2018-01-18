@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <link rel="stylesheet" href="css/metro-bootstrap.css">
+    <link rel="stylesheet" href="css/metro-bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/sfx.css">
+	<link href="css/iconFont.min.css" rel="stylesheet">	 
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/metro.min.js"></script>
+	<script src="js/sfxindex.js"></script>
+	<script src="js/js.cookie.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<title>LOCAL SAFAX Eclipse- An Authorization Service</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+</head>
+<body class="metro">
+	<div id="menu">
+			<nav class="navigation-bar dark ">
+			    <nav class="navigation-bar-content">
+			    	<div id="registerButton" class="element place-right displaycursor">
+					    Register
+			    	</div>
+			    	<div id="loginButton" class="element place-right displaycursor">
+					    Login
+			    	</div>
+			    </nav>
+		    </nav>
+		</div>
+		<div class="container">
+			<div class="grid fluid">
+				<div class="row pad borderbottom">
+						<div class="span4 header">SAFAX</div>
+						<div class="span8 subheader top-pad text-right">A Flexible and Extensible Authorization Service</div>
+				</div>
+				<div class="row"></div>
+				<div class="row"></div>
+				<div class="row"></div>
+				<div class="row"></div>
+				<div id="mainForms" class="row">
+					<div class="offset4 span4">
+						<div id="resetPwdForm" class="hideElement">
+							<form method="post" id="form-reset">
+							<div class="grid fluid">
+								<div class="row">
+									<div class="subheader"> 
+										First we have to know who you are..
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control text">
+										<input name="email" type="text" 
+												placeholder="Email address"/>
+										<button class="btn-clear"></button>
+									</div>
+								</div>
+								<div class="row text-center">
+									<button id="requestresetSubmit" type="submit" class="large bg-dark fg-white">Request Reset</button>
+								</div>
+							</div>
+							</form>
+						</div>
+						<div id="loginForm">
+						 	<div class="grid fluid">
+									<form id="form-login" name="form-login" method="post">
+									<div class="row">
+										<div id="loginmessage" class="subheader text-error hideElement" style="padding-bottom:20px;"> 
+											
+										</div>
+										<div class="subheader"> 
+											Login
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-control text">
+											<input id="lusername" name="username" type="text" value="" placeholder="Username"/>
+											<button class="btn-clear"></button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-control password">
+											<input id="lpwd" name="sfxpwd" type="password" value="" placeholder="Password"/>
+											<button class="btn-reveal"></button>
+										</div>
+									</div>
+									<div class="row text-center">
+										<button id="loginSubmit" type="submit" class="large bg-dark fg-white">Login</button>
+									</div>
+									</form>	
+									<div class="row text-center pad">
+										<span id="forgotPwdLink" class="displaycursor">Forgot your password?</span>
+									</div>
+									<div class="row text-center pad">
+									<div class="span6">
+										<button id="registerlink" style="width:90%;" class="large bg-darkCyan fg-white">Sign Up!</button>
+									</div>
+									<div class="span6">
+										<button id="guestlogin" style="width:90%;" class="large bg-darkCyan fg-white">Login as Guest</button>
+									</div>
+									</div>
+								</div>
+								
+						</div>
+						<div id="registerForm" class="hideElement">
+						<form method="post" id="form-register" name="form-register">
+							<div class="grid fluid">
+								<div class="row">
+									<div class="subheader"> 
+										Register
+									</div>
+								</div>
+								<div class="row">
+									<div id="registername" class="input-control text">
+										<input id="registerfname" name="fname" type="text" value="" placeholder="Full Name"/>
+										<button class="btn-clear"></button>
+										<span id="statusname">
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div id="registeruseremail" class="input-control text">
+										<input id="registeremail" name="email" type="text" value="" placeholder="Email address"/>
+										<button class="btn-clear"></button>
+										<span id="statusemail">
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div id="registerUName"  class="input-control text">
+										<input id="registerUserName" name="username" type="text" value="" placeholder="Username"/>
+										<button class="btn-clear"></button>
+										<span id="statusUserName">
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div id="registerpwdbox" class="input-control password">
+										<input id="registerpwd" name="password" type="password" value="" placeholder="Password"/>
+										<button class="btn-reveal"></button>
+									</div>
+								</div>
+								<div class="row">
+									<div id="registerconfirmpwdbox" class="input-control password">
+										<input id="registerconfirmpwd" name="confirmpwd" type="password" value="" placeholder="Confirm Password"/>
+										<button class="btn-reveal"></button>
+										<span id="statuspwd">
+										</span>
+									</div>
+								</div>
+								<div class="row text-center">
+									<button id="registerSubmit" type="submit" class="large bg-dark fg-white" disabled>Register</button>
+								</div>
+							</div>
+							</form>
+						</div>
+						<div id="accountsettingsform" class="hideElement">
+						<form method="post" id="form-register">
+							<div class="grid fluid">
+								<div class="row">
+									<div class="subheader"> 
+										Account Settings
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control text">
+										<input name="fname" type="text" value="" placeholder="Full Name"/>
+										<button class="btn-clear"></button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control text">
+										<input name="email" type="text" value="" placeholder="Email address"/>
+										<button class="btn-clear"></button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control password">
+										<input name="currentpassword" type="password" value="" placeholder="Password"/>
+										<button class="btn-reveal"></button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control password">
+										<input name="newpassword" type="password" value="" placeholder="Password"/>
+										<button class="btn-reveal"></button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-control password">
+										<input name="confirmpwd" type="password" value="" placeholder="Confirm Password"/>
+										<button class="btn-reveal"></button>
+									</div>
+								</div>
+								<div class="row text-center">
+									<button id="updateSettings" type="submit" class="large bg-dark fg-white">Update</button>
+								</div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id="mainDisplayContainer" class="row" >
+				<div class="offset2 span6">
+					<div id="about" class="hideElement">
+					  <p class="text-justify">
+						SAFAX is an extensible authorization framework offered as a service. 
+						It provides a single point for users to deploy their policies irrespective of where the 
+						data is actually stored. Data controllers should contact the SAFAX service for any access 
+						requests for users' data. SAFAX will route those requests to the dedicated Policy Decision 
+						Point assigned to the user and will parse the request. 
+						This provides significant benefits in cloud scenarios and in collaborative environments, 
+						where consumers need to share their data to other individuals in a secure manner.
+					</p>
+						<p class="top-pad">
+							Check out the 
+								<a href="http://security1.win.tue.nl/safax/">homepage</a>
+							 of SAFAX
+						</p>
+					</div>
+					<div id="help" class="hideElement">
+					</div>
+					<div id="message" class="hideElement">
+					</div>
+				</div>	
+				</div>
+				<div class="row">
+					<blockquote>TU/e - Security Group</blockquote>
+				</div>
+			</div>
+		</div>
+
+</body>
+</html>

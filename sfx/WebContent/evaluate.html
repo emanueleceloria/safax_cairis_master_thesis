@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <link rel="stylesheet" href="css/metro-bootstrap.css">
+    <link rel="stylesheet" href="css/metro-bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/sfx.css">
+	<link href="css/iconFont.min.css" rel="stylesheet">	 
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/metro.min.js"></script>
+	<script src="js/sfxpep.js"></script>
+	<title>SAFAX - An Authorization Service</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	
+	<style>
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		}
+		table {
+		    table-layout: fixed;
+		}
+		th, td {
+		    padding: 5px;
+		}
+	</style>
+</head>
+<body class="metro">
+	<div class="menu">
+		<span id="mhome" class="menubox"> Home </span>
+		<span id="mpep" class="menubox"> Policy Evaluation </span>
+		<span id="msr" class="menubox"> Service Registry </span>
+		<span id="mact" class="menubox"> Account Activity </span>
+		<span id="mtrack" class="menubox"> Issue Tracker </span>
+		<span id="mabt" class="menubox"> About </span>
+		<span id="madmin" class="menubox" style="display:none;"> Administration </span>
+		<span id="mhelp" class="menubox"> Help </span>
+		<span id="msetting" class="menubox"> Settings </span>
+		<span id="mlogout" class="menubox"> Logout </span>	</div>
+	<div class="container">
+		<div class="grid fluid">
+			<div class="row" style="border-bottom:1px solid">
+				<div class="span4 header">SAFAX</div>
+				<div class="span8 subheader text-right top-pad">A Flexible and Extensible Authorization Service</div>
+			</div>
+			<div id="mainccontainer" class="row">
+				<div class="grid fluid">
+					<div class="row">
+						<div class="span3">
+								<div class="subheader" style="padding-top:20px;padding-bottom:20px;"> DEMOS </div>
+							    <div id="demopdps">
+								   		
+								</div>
+						</div>
+						<div class="span9">
+							<div class="grid fluid">
+								<div class="row">
+									<div class="span6 subheader">
+										Available Requests
+									</div>
+									<div class="span6 subheader">
+										Upload New Request
+									</div>
+								</div>
+								<div class="row borderbottom">
+									<div class="span5">
+										<div class="input-control select">
+												<select id="availablerequests">
+												</select>
+										</div>
+									</div>
+									<div class="span1">
+										<button id="loadavailablerequest" class="bg-dark fg-white"><i class="icon-arrow-right-5" style="padding:4px;"></i></button>
+									</div>
+									<div class="span6">
+										<form id="requestuploadform" enctype="multipart/form-data">
+										    <div class="input-control file">
+											   <input id="requestxacml" name="requestxacml" type="file"/>
+												<button class="btn-file"></button>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="row subheader" >
+									Response
+								</div>
+								<div class="row">
+										<div class="input-control textarea">
+										    <textarea id="safaxresponse" rows="10" readonly></textarea>
+										</div>
+								</div>
+								
+								<div class="row">
+									<div class="span7">
+										<div id="uconresponseactionboxmenu" style="display:none;">
+											<table id="table_uconresponserequestboxmenu" style="width:100%;">
+											  <tr>
+											    <th style="width: 210px;">Action/ Request</th>
+											    <th>Trigger</th> 
+											    <th>Button</th>
+											  </tr>
+											  
+											   <!-- This is a comment. Comments are not displayed in the browser 
+											  Only used for testing. These values should be dynamically added by polling SAFAX server
+											  <tr>
+											    <td>Bob,1,call</td>
+											    <td></td> 
+											    <td>
+											    	<button class="small inverse" id="uconbutton">Stop<i class="icon-console on-right" style="padding-left:10px;"></i></button>
+											    </td>
+											  </tr>
+											  <tr>
+											    <td>Re-evaluate Bob, 1, Call</td>
+											    <td>Credit</td> 
+											    <td>
+											    	<button class="small inverse" id="uconbutton">Stop<i class="icon-console on-right" style="padding-left:10px;"></i></button>
+											    </td>
+											  </tr>
+											  <tr>
+											    <td>Bob,8,call</td>
+											    <td></td> 
+											    <td>
+											    	<button class="small inverse" id="uconbutton">Stop<i class="icon-console on-right" style="padding-left:10px;"></i></button>
+											    </td>
+											  </tr>
+											    -->
+											</table>
+										</div>
+										
+										<div class="row" id="uconresponseupdateboxmenu" style="display:none;">
+											<table id="table_uconresponseupdateboxmenu" style="width:100%;">
+											  <tr>
+											    <th style="width: 210px;">Update</th>
+											    <th>Action/Request</th>
+											    <th>Trigger</th> 
+											  </tr>
+											  
+											  <!-- This is a comment. Comments are not displayed in the browser 
+											  Only used for testing. These values should be dynamically added by polling SAFAX server
+											  <tr>
+											    <td>OnUpdate</td>
+											    <td>Bob, 1, call</td>
+											    <td>10 seconds</td> 
+											  </tr>
+											  <tr>
+											    <td>PreUpdate</td>
+											    <td>Bob, 8, call</td>
+											    <td></td> 
+											  </tr>
+											  -->
+		
+											</table>
+										</div>
+										
+										<div class="row" id="uconresponsepipboxmenu" style="display:none;">
+											<table id="table_uconresponsepipboxmenu" style="width:100%;">
+											<tbody>
+												<tr>
+											    	<th style="width: 210px;">AttributeID</th>
+											    	<th>ParentID</th>
+											    	<th>Value</th> 
+											  	</tr>
+											  
+											 	<!-- This is a comment. Comments are not displayed in the browser 	
+											  	<tr>
+											    	<td>credit</td>
+											    	<td>Bob</td>
+											    	<td id = "45678">60</td> 
+											  	</tr> 
+											  	-->
+											  
+											</tbody>
+											
+											  
+											</table>
+										</div>
+												
+									</div>
+									<div class="span5">
+										<div id="uconlivesection" style="display:none; width:100%;">
+											<p> Live UCON Log </p>
+											<div class="input-control textarea">
+											    <textarea id="liveuconresponse" rows="12" readonly> 
+											    </textarea>
+											</div>
+										</div>		
+									</div>
+								</div>
+
+								<div class="row" id="responsemenu" style="display:none;">
+								</div>
+
+								<div id="transparencynotificationboxmenu" style="display:none;">
+										<table id="transparencynotificationboxmenu" style="width:100%;">
+											<tr>
+											    <th style="text-align:left;">Notifications</th>
+											</tr>
+										</table>
+										<div class="row">
+										</div>
+								</div>
+																
+								<div id="responsemenunoucon" style="display:none;">
+									<div>
+										<a href="./activity.html"><button class="large inverse">Analyse Trace<i class="icon-console on-right" style="padding-left:10px;"></i></button></a>
+									</div>
+								</div>
+								<div class="row" id="responsemenuuconbutton" style="display:none;">
+									<div class="span7">
+										<button class="large inverse" id="uconrestartbutton">Restart Ucon Session<i class="icon-console on-right"></i></button>
+									</div>
+									<div class="span5">
+										<button id="uconanalyzetracebutton" class="large inverse">Analyse Trace UCON<i class="icon-console on-right" style="padding-left:10px;"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="border-top:1px solid;padding-top:10px;">
+				<blockquote>TU/e - Security Group</blockquote>
+			</div>
+			<div id="spinner" class="loadspinner" style="display: none;">
+				<img id="img-spinner" src="images/loader.gif" alt="Loading" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>
