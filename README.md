@@ -6,3 +6,5 @@ Code developed to support integration between Cairis and Safax projects
 - Folder named "sfx" contains SAFAX's "sfx" folder files modified
 
 - Folder named "sfxservice" contains SAFAX's "sfxservice" folder files modified
+
+- Folder named "db_risk_tables" contains MySQL tables implemented to support the integration
