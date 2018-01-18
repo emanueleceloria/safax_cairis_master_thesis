@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <link rel="stylesheet" href="css/metro-bootstrap.css">
+    <link rel="stylesheet" href="css/metro-bootstrap-responsive.css">
+	<link rel="stylesheet" href="css/sfx.css">
+	<link href="css/iconFont.min.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/metro.min.js"></script>
+	<script src="js/sfxmain.js"></script>
+	<title>SAFAX - An Authorization Service</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+</head>
+<body class="metro">
+	<div class="menu">
+		<span id="mhome" class="menubox"> Home </span>
+		<span id="mpep" class="menubox"> Policy Evaluation </span>
+		<span id="msr" class="menubox"> Service Registry </span>
+		<span id="mact" class="menubox"> Account Activity </span>
+		<span id="mtrack" class="menubox"> Issue Tracker </span>
+		<span id="mabt" class="menubox"> About </span>
+		<span id="madmin" class="menubox" style="display:none;"> Administration </span>
+		<span id="mhelp" class="menubox"> Help </span>
+		<span id="msetting" class="menubox"> Settings </span>
+		<span id="mlogout" class="menubox"> Logout </span>
+	</div>
+	<div class="container">
+			<div class="grid fluid">
+				<div class="row" style="border-bottom:1px solid">
+						<div class="span4 header">SAFAX</div>
+						<div class="span8 subheader text-right top-pad">A Flexible and Extensible Authorization Service</div>
+				</div>
+				<div class="row  contentHeaderBox">
+					<div class="span2">
+						<span class="subheader">Projects</span>
+					</div>
+					<div id="newproject" class="span1 subheader-secondary text-center displaycursor">
+						<span class="icon-plus"></span>
+					</div>
+					<div  class="span8">
+						<span id="displayHeader" class="subheader">Demos</span>
+					</div>
+					<div id="newdemo" class="span1 text-right subheader-secondary displaycursor">
+						<span class="icon-plus"></span>
+					</div>
+				</div>
+				<div class="row borderbottom" style="margin-top:-10px;">
+				<div  class="span3">
+						<div id="list-project" class="grid fluid">
+
+						</div>
+					</div>
+					<div class="span9" style="min-height:700px;">
+						<div class="grid fluid">
+							<div class="row">
+								<div id="demolist" style="margin-top:-15px;" class="row grid fluid">
+									
+							    </div>
+							    <div class="row">
+							    	<div id="formslist" class="grid fluid hideElement">
+							    	 	<div id="createproject">
+							    	 	<form id="projectform" name="projectform" method="POST">
+							    	 		<input id="actiontype" type="hidden" value="create" name="actiontype"></input>
+							    	 		<input id="updateformprojectid" type="hidden" name="projectid"></input>
+							    	 		<div class="row">
+							    			<div class="span4">
+							    				Project Name
+							    			</div>
+							    			<div class="span8">
+							    				<div id="createprojectname" class="input-control text">
+													<input id="projectname" type="text" name="projectname" placeholder="Unique Project Name"/>
+													<button class="btn-clear"></button>
+												</div>
+												<div id="projectnamemessage" class="pad"> </div>
+							    			</div>
+							    			</div>
+							    			<div class="row">
+							    			<div class="span4">
+							    				Project Description
+							    			</div>
+							    			<div class="span8">
+							    				<div class="input-control textarea">
+													<textarea id="projectdesc" name="projectdesc"></textarea>
+												</div>
+							    			</div>
+							    			</div>
+							    			<div class="row">
+							    			<div class="span4">
+							    				Project Homepage
+							    			</div>
+							    			<div class="span8">
+							    				<div class="input-control text">
+													<input type="text" id="projecturl" name="projecturl" placeholder="Project Homepage"/>
+													<button class="btn-clear"></button>
+												</div>
+							    			</div>
+							    			</div>
+							    			<div class="row">
+							    			<div class="span4">
+							    				Make Private
+							    			</div>
+							    			<div class="span8">
+							    				    <div class="input-control switch">
+												    <label>
+												    <input id="isprivate" name="isprivate" type="checkbox" checked/>
+												    <span class="check"></span> 
+												    </label>
+												    </div>
+							    			</div>
+							    			</div>
+							    			<div class="row">
+							    				<div class="span4">
+							    					Assign members to project
+							    					<p>
+							    						<small>
+							    							You are already assigned to the project.<br/>
+							    							Since you own this demo.
+							    						</small>
+							    					</p>
+							    				</div>
+							    				<div class="span3">
+							    					<div class="pad"> Find Users </div>
+														<div class="input-control text">
+															<input type="text" id="findprojectusers" name="findprojectusers" placeholder="Users"/>
+															<button class="btn-search" onClick="return false;"></button>
+														</div>
+													<div class="input-control select">
+															<select id="projectusers" multiple>
+															</select>
+													</div>
+							    				</div>
+							    				<div class="span1 text-center">
+							    					<div style="padding-top:50px;padding-bottom:10px;">
+							    						<button id="addprojectuser"><i class="icon-plus-2"></i></button> <br/>
+							    					</div>
+							    					<div>
+							    						<button id="removeprojectuser"><i class="icon-minus-2"></i></button>
+							    					</div>
+							    				</div>
+							    				<div class="span3">
+							    					<div class="pad"> Assigned Users </div>
+							    					<div class="input-control select">
+														<select id="assignedusers" name="projectusers" size="7" multiple>
+															
+														</select>
+													</div>
+							    				</div>
+							    			</div>
+							    			<div class="row">
+							    			<div class="offset4 span8">
+							    				<button id="projectsubmit" type="submit" class="large bg-dark fg-white">Create Project</button>
+							    			</div>
+							    			</div>
+							    		</form>
+							    		</div>
+							    		<div id="createdemo" class="grid fluid">
+								    	 	<form name="createdemoform" id="createdemoform" method="POST">
+								    	 		<div class="row">
+									    			<div class="span4">
+									    				Demo Name
+									    			</div>
+									    			<div class="span8">
+									    				<div id="createdemoname" class="input-control text">
+															<input id="demoname" type="text" name="demoname" placeholder="Unique Demo Name"/>
+															<button class="btn-clear"></button>
+														</div>
+														<div id="demonamemessage" class="pad"> </div>
+									    			</div>
+									    		</div>
+									    		<div class="row">
+									    			<div class="span4">
+									    				Demo Description
+									    			</div>
+									    			<div class="span8">
+									    				<div class="input-control textarea">
+															<textarea name="demodesc"></textarea>
+														</div>
+									    			</div>
+									    		</div>
+									    		<div class="row">
+									    			<div class="offset4 span8">
+									    				<button id="demosubmit" type="submit" class="large bg-dark fg-white">Create Demo</button>
+									    			</div>
+									    		</div>
+								    	 	</form>
+							    	 	</div>
+							    	</div>
+							    </div>
+							    <div id="message" class="row grid fluid hideElement" 
+							    	style="padding-top:100px;padding-left:100px;padding-right:100px;">
+							    </div>
+							    <div class="row">
+							    	<div id="demoedit" class="grid fluid hideElement">
+							    		<div class="row">
+								    		<div style="padding-bottom:20px; margin-top:-20px;" class="span4 subheader">
+								    			<span id="demoeditback" class="icon-arrow-left-3 displaycursor"></span>
+								    			<span style="padding-left:10px;">Back</span>
+								    		</div>
+								    		<div style="padding-bottom:20px; margin-top:-20px;" class="span8 text-right subheader">
+								    			<span style="padding-left:10px;">Run</span>
+								    			<span id="demoexecute" class="icon-play-2 displaycursor"></span>
+								    		</div>
+							    		</div>
+							    	    <div class="tab-control" data-role="tab-control">
+										    <ul class="tabs">
+											    <li class="active"><a href="#_xacmlpolicies">XACML</a></li>
+											    <li><a href="#_credpolicies">Credential</a></li>
+											    <li><a href="#_reppolicies">Reputation</a></li>
+											    <li><a href="#_simpolicies">Similarity</a></li>
+											    <li><a href="#_transparency">Transparency</a></li>
+											    <li><a href="#_attributes">Attributes</a></li>
+											    <li><a href="#_cairissettings">Risk</a></li>
+											    <li><a href="#_demosettings"><i class="icon-cog"></i></a></li>
+										    </ul>
+										     
+										    <div id="allframes" class="frames">
+										    <div class="frame" id="_xacmlpolicies">
+										    	<div class="policyhead subheader"> XACML </div>
+										    	<div id="displayXACMLPolicies" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="uploadxacmlpolicies" enctype="multipart/form-data">
+										    			    <div class="input-control file">
+															   <input placeholder="Add Policies" id="xacmlpolicies" name="xacmlpolicies" type="file" multiple/>
+															    <button class="btn-file"></button>
+															</div>
+										    		</form>
+										    	</div>	
+										    	<div class="policyhead subheader"> XACML Requests </div>
+										    	<div id="displayXACMLRequests" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="uploadxacmlrequests" enctype="multipart/form-data">
+										    			    <div class="input-control file">
+															   <input placeholder="Add Requests" id="xacmlrequest" name="xacmlrequest" type="file" multiple/>
+															    <button class="btn-file"></button>
+															</div>
+										    		</form>
+										    	</div>	
+										    </div>
+										    <div class="frame" id="_credpolicies">
+										    	<div class="policyhead subheader"> Credential </div>
+										    	<div id="displaycredpolicies" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="uploadcredpolicies" enctype="multipart/form-data">
+										    			    <div class="input-control file">
+															    <input id="credpolicies" name="credpolicies" type="file" multiple/>
+															    <button class="btn-file"></button>
+															</div>
+										    		</form>
+										    	</div>
+										    </div>
+										     <div class="frame" id="_reppolicies">
+										     	<div class="policyhead subheader"> Reputation </div>
+										    	<div id="displayrep_policies" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="uploadrep_policy" enctype="multipart/form-data">
+											    	   <div class="configrow">
+										    			    <div class="input-control file">
+															    <input id="rep_policy" name="rep_policy" type="file"/>
+															    <button class="btn-file"></button>
+															</div>
+													</div>
+													</form>
+										    	</div>
+										    	<div id="repconfig" style="display:none;">
+										    	<div class="configrow">
+										    		<div class="subheader" style="padding-bottom:10px;">Flow based Reputation</div>
+										    		<div style="padding-bottom:10px">Alpha for Computing Reputation</div>
+										    		<div class="input-control text">
+															<input id="repalphaip" type="text" value="" placeholder="Alpha between 0 and 1"/>
+															<button class="btn-clear"></button>
+													</div>
+										    	</div>
+										    	<div class="configrow">
+										    		<div style="padding-bottom:10px">Initial Vector for Flow Based Reputation</div>
+										    		<input type="hidden" id="repinitvectorip"></input>
+										    		<div id="repinitvector" style="padding-bottom:10px">
+										    		</div>
+										    	</div>
+										    	<div class="configrow">
+										    		<div class="subheader" style="padding-bottom:10px;">Evidence based Reputation</div>
+										    		<div style="padding-bottom:10px">Choose g(x) function</div>
+										    		<div style="padding-bottom:10px">
+										    			<span class="gxbox"><button id="gxb" class="repgxfn large bg-dark fg-white" style="margin-left:10px">x<sub>b</sub></button></span>
+										    			<span class="gxbox"><button id="gsqrtb" class="repgxfn large bg-dark fg-white" style="margin-left:10px">√x<sub>b</sub></button></span>
+										    			<span class="gxbox"><button id="gdot" class="repgxfn large bg-dark fg-white" style="margin-left:10px">o dot</button></span>
+										    		</div>
+										    	</div>
+<!-- 										    	<div class="configrow"> -->
+<!-- 										    		<div style="padding-bottom:10px">System Policy for Evidence Based Reputation</div> -->
+<!-- 										    		<input type="hidden" id="repsyspolicyip"></input> -->
+<!-- 										    		<div id="repsyspolicy" style="padding-bottom:10px"> -->
+										    			
+<!-- 										    		</div> -->
+<!-- 										    	</div> -->
+										    	</div>
+										    </div>
+										     <div class="frame" id="_simpolicies">
+										     	<div class="policyhead subheader"> Similarity </div>
+										    	<div id="displaysimpolicies" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="uploadsimpolicy" enctype="multipart/form-data">
+											    	   <div class="configrow">
+										    			    <div class="input-control file">
+															    <input id="simpolicy" name="simpolicy" type="file"/>
+															    <button class="btn-file"></button>
+															</div>
+													</div>
+													</form>
+										    	</div>
+										    	<div id="simconfig" style="display:none;">
+										    	<div class="configrow">
+										    		<div style="padding-bottom:10px">Alpha for Computing Similarity</div>
+										    		<div class="input-control text">
+															<input id="simalphaip" type="text" value="" placeholder="Alpha between 0 and 1"/>
+															<button class="btn-clear"></button>
+													</div>
+										    	</div>
+										    	<div class="configrow">
+										    		<div style="padding-bottom:10px">Initial Vector for Similarity</div>
+										    		<input type="hidden" id="siminitvectorip"></input>
+										    		<div id="siminitvector" style="padding-bottom:10px">
+										    			
+										    		</div>
+										    	</div>
+										     </div>
+										     </div>
+										     <div class="frame" id="_attributes">
+										     	<div class="policyhead subheader"> Upload Attributes </div>
+										    	<div id="displayattributes" style="padding-bottom:20px;">
+										    		
+										    	</div>
+										    	<div>
+										    		<form id="attributeform" enctype="multipart/form-data">
+											    	   <div class="configrow">
+										    			    <div class="input-control file">
+															    <input id="attributefile" name="attributefile" type="file"/>
+															    <button class="btn-file"></button>
+															</div>
+													</div>
+													</form>
+										    	</div>
+										    	<div id="attributelist" class="accordion" data-role="accordion" style="display:none;">
+												    <div class="policyhead subheader"> Preferences </div>
+											    </div>
+										     </div>
+					
+											<div class="frame" id="_transparency">
+												<form id="preferenceform" name="preferenceform" method="post">		
+													<div class="row">
+									    				<div class="span3" style="width:200px;">
+									    					<div class="pad"> Add Users </div>
+															<div class="input-control text">
+																<input type="text" id="addtransparencyusers" size="2" placeholder="Users"/>
+																	<!--<button class="btn-search" onClick="return false;"></button>-->
+															</div>
+															<div class="input-control select">
+																	<select id="transparencyusers"  name="transparencyusers"size="5">
+																	</select>
+															</div>
+									    				</div>
+								    				
+									    				<div class="span1 text-center">
+									    					<div style="padding-top:50px;padding-bottom:10px;">
+									    						<button id="adduser"><i class="icon-plus-2"></i></button> <br/>
+									    					</div>
+									    					<div>
+									    						<button id="removeuser"><i class="icon-minus-2"></i></button>
+									    					</div>
+									    				</div>
+								    				</div>
+								    				
+								    				<div class="row text-center"> 
+												    	<div class="span3">
+									    					<div class="pad"> Available Conflicts </div>
+															<div class="input-control select">
+																	<select id="conflicts" size="7" multiple>
+																	</select>
+															</div>
+									    				</div>
+									    				<div class="span1 text-center">
+									    					<div style="padding-top:50px;padding-bottom:10px;">
+									    						<button id="addnotification"><i class="icon-plus-2"></i></button> <br/>
+									    					</div>
+									    					<div>
+									    						<button id="removenotification"><i class="icon-minus-2"></i></button>
+									    					</div>
+									    				</div>
+									    				<div class="span3">
+									    					<div class="pad"> Selected Conflicts </div>
+									    					<div class="input-control select">
+																<select id="selectedconflicts" name=selectedconflicts size="7" multiple>
+																	
+																</select>
+															</div>
+									    				</div>
+									    				<div class="span3">
+									    					<div class="pad"> User ViewPoint </div>
+									    					<div class="input-control text">
+																	<input type="text" id="viewpoint" name="viewpoint" size="2" placeholder="ViewPoint"/>
+															</div>
+									    				</div>
+													</div>
+								    				
+											    	<div class="row text-center" style=padding-top:5px> 
+											    		<button id="preferencesubmit" type="submit" class="large bg-dark fg-white">Save Preferences</button>
+													</div>												
+												</form>
+											</div>
+											
+											<!-- CAIRIS updates -->
+											<div class="frame" id="_cairissettings">
+												<form id="cairisconfigform" method="post">
+													<div class="configrow">
+														<div class="subheader-secondary bg-dark fg-white"
+															style="padding: 10px;">CAIRIS Settings</div>
+														<div class="configrow">
+															<span class="span6"> CAIRIS Account </span>
+															<div class="input-control select size4">
+																<table id="cairis-config">
+																	<tr>
+																		<td class="cairis-lgn">Username</td>
+																		<td></td>
+																		<td class="cairis-spc"><input type="text"
+																			id="cairisusr" name="cairisusr"></td>
+																	</tr>
+																	<tr>
+																		<td class="cairis-lgn">Password</td>
+																		<td></td>
+																		<td class="cairis-spc"><input type="password"
+																			id="cairispwd" name="cairispwd"></td>
+																	</tr>
+																	<tr>
+																		<td class="cairis-lgn">Database</td>
+																		<td></td>
+																		<td class="cairis-spc"><input type="text"
+																			id="cairisdb" name="cairisdb"></td>
+																	</tr>
+																</table>
+															</div>
+														</div>
+													</div>
+													<div class="configrow text-center">
+														<button id="cairisconfigsubmit" type="submit"
+															class="large bg-dark fg-white">Save Settings</button>
+													</div>
+												</form>
+											</div>
+											<!-- end CAIRIS updates -->
+											
+											
+										    <div class="frame" id="_demosettings">
+										    	<form id="democonfigform" method="post">
+										    	<div class="configrow">
+												<div class="subheader-secondary bg-dark fg-white" style="padding:10px;"> Demo Settings </div>
+										    	<div class="configrow">
+									    			<span class="span6">
+									    				Demo Name
+									    			</span>
+									    			<div id="editformdemoname" class="input-control text size4">
+															<input id="editdemoname" type="text" name="demoname" placeholder="Unique Demo Name"/>
+															<button class="btn-clear"></button>
+													</div>
+													<div id="demonamemessage" class="pad"> </div>
+									    		</div>
+									    		<div class="configrow">
+									    			<span class="span6">
+									    				Demo Description
+									    			</span>
+									    			<div class="input-control textarea size4">
+															<textarea id="editdemodesc" name="editdemodesc"></textarea>
+													</div>
+												</div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				Move Demo
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="editdemoprojectlist" name="moveproject">
+															
+														</select>
+													</div>
+												</div>
+												</div>
+												<div class="configrow">
+												<div class="subheader-secondary bg-dark fg-white" style="padding:10px;"> PDP Settings </div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				PDP Implementation
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="pdpservice" name="pdpservice">
+															
+														</select>
+													</div>
+												</div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				Root Combining Algorithm
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="pdprcalgo" name="pdprcalgo">
+															<option value="none">None</option>
+															<option value="permitoverride">Permit Overrides</option>
+															<option value="denyoverride">Deny Overrides</option>
+															<option value="firstapplicable">First Applicable</option>
+															<option value="onlyoneapplicable">Only One Applicable</option>
+														</select>
+													</div>
+												</div>
+										    	<div class="configrow">
+										    		<span class="span6">PDP Code</span>
+										    		<div class="input-control text size4">
+														<input id="editpdpcode" name="pdpcode" type="text" />
+													</div>
+													<div id="editpdpcodestate" class="offset6">
+														Change the default code
+													</div>
+												</div>
+												<div class="configrow"> 
+										    		<span class="span6"> Persistent </span>
+										    		<div class="input-control switch">
+														    <label>
+														    <input id="pdppersistent" name="ispersistent" type="checkbox"/>
+														    <span class="check"></span>
+														    </label>
+													</div>
+										    	</div>
+										    	</div>
+										    	<div class="configrow">
+												<div class="subheader-secondary bg-dark fg-white" style="padding:10px;"> Other Settings </div>
+										    	<div class="configrow">
+									    			<span class="span6">
+									    				PEP
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="pepservice" name="pepservice">
+															
+														</select>
+													</div>
+												</div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				Context Handler
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="chservice" name="chservice">
+															
+														</select>
+													</div>
+												</div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				PIP
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="pipservice" name="pipservice">
+															
+														</select>
+													</div>
+												</div>
+												<div class="configrow">
+									    			<span class="span6">
+									    				PAP
+									    			</span>
+									    			<div class="input-control select size4">
+														<select id="papservice" name="papservice">
+															
+														</select>
+													</div>
+												</div>										
+												</div>
+										    	<div class="configrow text-center"> 
+										    		<button id="democonfigsubmit" type="submit" class="large bg-dark fg-white">Save Settings</button>
+												</div>
+										    	</form>
+										    </div>
+										    </div>
+										  </div>
+							    	</div>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<blockquote>TU/e - Security Group</blockquote>
+				</div>
+				<div id="spinner" class="loadspinner" style="display: none;">
+						<img id="img-spinner" src="images/loader.gif" alt="Loading" />
+				</div>
+				<div id="copytoproject" class="popupbox" style="display: none;">
+				<div id="copytoprojecclose" class="text-right displaycursor"><small>Close X</small></div>
+						<p class="subheader-secondary">
+							Copy Demo to Project
+						</p>
+						<div style="padding-top:20px;padding-bottom:20px;">
+							<select id="copydemotoproject" style="width: 250px !important; min-width: 250px;height:40px;">
+							</select>
+						</div>
+						<button class="large bg-dark fg-white" id="copydemobutton">Copy Demo</button>
+				</div>
+			</div>
+		</div>
+
+</body>
+</html>
