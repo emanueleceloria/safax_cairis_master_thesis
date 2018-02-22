@@ -10,3 +10,5 @@ Code developed to support the integration between CAIRIS and SAFAX projects
 - Folder named "db_risk_tables" contains MySQL tables implemented to support the integration
 
 - Folder named "example_policies_requests" contains examples of risk policies and requests
+
+In integration-manuals.pdf it is possible to find the Developer Manual and the User Manual
