@@ -1,5 +1,5 @@
 # safax_cairis_master_thesis
-Code developed to support integration between Cairis and Safax projects
+Code developed to support the integration between CAIRIS and SAFAX projects
 
 - Folder named "cairis" represents the cairis module implemented on Safax
 
