@@ -1,6 +1,11 @@
 package nl.tue.sec.cairis.impl;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.xml.bind.DatatypeConverter;
+
+import nl.tue.sec.cairis.util.LogUtil;
 
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.Client;
@@ -27,9 +32,10 @@ public class AuthenticationMethods {
         String encoded = DatatypeConverter.printBase64Binary(message); 
 		
 		webResource = client.resource(authURL);
+		
 		response= webResource.type("application/json").header("Authorization", "Basic " + encoded)
 				.post(ClientResponse.class);
-		
+
 		return response;
 	}
 	
@@ -43,7 +49,7 @@ public class AuthenticationMethods {
 		CairisURL = cairisURL+"?session_id=test";
 		webResource = client.resource(CairisURL);
 		response= webResource.get(ClientResponse.class);
-		System.out.println("Contacting "+CairisURL+" - status: "+response.getStatus()+ " - info: "+response.getStatusInfo());
+//		System.out.println("Contacting "+CairisURL+" - status: "+response.getStatus()+ " - info: "+response.getStatusInfo());
 
 		return response;
 	}

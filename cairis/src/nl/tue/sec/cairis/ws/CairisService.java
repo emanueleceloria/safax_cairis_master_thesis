@@ -29,12 +29,12 @@ import com.sun.jersey.api.client.ClientResponse;
 @Path("/")
 public class CairisService {
 	
-	// static parameters which represent the username and password used for http basic authentication
-	// plus the cairis demo url and the api to contact in order to obtain a session
+	// static parameters which represent, respectively, the CAIRIS demo URL, the API to contact
+	// in order to obtain a session and the API to contact in order to manage the relation
+	// with the CAIRIS db.
 	private final static String CAIRISHOME="https://demo.cairis.org";
 	private final static String authURL = CAIRISHOME+"/api/session";
 	private final static String CAIRISdb = CAIRISHOME+"/api/settings/database";
-	
 	
 	/*
 	 * urn:bu:udf:cairis:risk:level:asset
@@ -54,20 +54,19 @@ public class CairisService {
 		
 		int int_risk_value;
 		
-		if(asset_name.contains("_"))
-			asset_name = asset_name.replace("_", "%20");
+		if(asset_name.contains(" "))
+			asset_name = asset_name.replace(" ", "%20");
 		
 		CairisURL = CAIRISHOME+"/api/risk_level/asset/"+asset_name;
 		
-		LogUtil.writeLog(transID, "Cairis module in action", 2);
+		LogUtil.writeLog(transID, "cairis module in action", 2);
 		
 		// Execution of the core part of the module
 		int_risk_value = CairisEngine.coreExecute(CairisURL, transID, authURL, CAIRISdb);
-		
+
 		if(int_risk_value == -1)
 			return null;
 			
-		
 			/* TEST
 			 * 
 			 * just testing the module CairisService, retrieving risk from
@@ -79,14 +78,15 @@ public class CairisService {
 			  end TEST 
 			 */
 			
-		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ") 
-				+ " is: " + int_risk_value + "\n");		
+//		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ") 
+//				+ " is: " + int_risk_value + "\n");		
 		
 		LogUtil.writeLog(transID, "\nAsset: "+asset_name.replace("%20", " ")	
 				+ "\nThreshold: "+threshold
 				+ "\nHighest risk is: "+int_risk_value, 2);
 		
 		boolean accepted = EvaluationMethods.evaluateThreshold(int_risk_value, threshold, transID);	
+
 		
 		return DataUtil.buildResponse(DataUtil.getJSONFromBool(accepted));
 		 
@@ -113,15 +113,15 @@ public class CairisService {
 		
 		int int_risk_value;
 		
-		if(asset_name.contains("_"))
-			asset_name = asset_name.replace("_", "%20");
-		if(threat_name.contains("_"))
-			threat_name = threat_name.replace("_", "%20");
+		if(asset_name.contains(" "))
+			asset_name = asset_name.replace(" ", "%20");
+		if(threat_name.contains(" "))
+			threat_name = threat_name.replace(" ", "%20");
 		
 		CairisURL = CAIRISHOME+"/api/risk_level/asset/threat_type/" + asset_name + "/" + threat_name;
 		
-		LogUtil.writeLog(transID, "Cairis module in action", 2);
-	
+		LogUtil.writeLog(transID, "cairis module in action", 2);
+
 		// Execution of the core part of the module
 		int_risk_value = CairisEngine.coreExecute(CairisURL, transID, authURL, CAIRISdb);
 
@@ -135,9 +135,9 @@ public class CairisService {
 		
 		end TEST */
 		
-		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ")
-				+ " given threat " + threat_name.replace("%20", " ")
-				+ " is: " + int_risk_value + "\n");
+//		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ")
+//				+ " given threat " + threat_name.replace("%20", " ")
+//				+ " is: " + int_risk_value + "\n");
 
 		LogUtil.writeLog(transID, "\nAsset: "+asset_name.replace("%20", " ")
 				+ "\nThreat: "+threat_name.replace("%20", " ")
@@ -146,6 +146,7 @@ public class CairisService {
 		
 		boolean accepted = EvaluationMethods.evaluateThreshold(int_risk_value, threshold, transID);	
 
+		
 		return DataUtil.buildResponse(DataUtil.getJSONFromBool(accepted));
 
 	}
@@ -171,15 +172,15 @@ public class CairisService {
 
 		int int_risk_value;
 		
-		if(asset_name.contains("_"))
-			asset_name = asset_name.replace("_", "%20");
-		if(environment.contains("_"))
-			environment = environment.replace("_", "%20");
+		if(asset_name.contains(" "))
+			asset_name = asset_name.replace(" ", "%20");
+		if(environment.contains(" "))
+			environment = environment.replace(" ", "%20");
 		
 		CairisURL = CAIRISHOME+"/api/risk_level/asset/"+asset_name+"/environment/"+environment;
 		
-		LogUtil.writeLog(transID, "Cairis module in action", 2);
-		
+		LogUtil.writeLog(transID, "cairis module in action", 2);
+			
 		// Execution of the core part of the module
 		int_risk_value = CairisEngine.coreExecute(CairisURL, transID, authURL, CAIRISdb);
 		
@@ -193,9 +194,9 @@ public class CairisService {
 		
 		end TEST */
 		
-		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ")
-				+ " with "+environment.replace("%20", " ")+" as environment is: "
-				+ int_risk_value + "\n");
+//		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ")
+//				+ " with "+environment.replace("%20", " ")+" as environment is: "
+//				+ int_risk_value + "\n");
 		
 		LogUtil.writeLog(transID, "\nAsset: "+asset_name.replace("%20", " ")
 				+ "\nEnvironment: "+environment.replace("%20", " ")
@@ -203,7 +204,7 @@ public class CairisService {
 				+ "\nHighest risk is: "+int_risk_value, 2);
 
 		boolean accepted = EvaluationMethods.evaluateThreshold(int_risk_value, threshold, transID);	
-
+		
 		return DataUtil.buildResponse(DataUtil.getJSONFromBool(accepted));
 		 
 	}
@@ -231,16 +232,16 @@ public class CairisService {
 		int int_risk_value;
 
 		
-		if(asset_name.contains("_"))
-			asset_name = asset_name.replace("_", "%20");
-		if(threat_name.contains("_"))
-			threat_name = threat_name.replace("_", "%20");
-		if(environment.contains("_"))
-			environment = environment.replace("_", "%20");
+		if(asset_name.contains(" "))
+			asset_name = asset_name.replace(" ", "%20");
+		if(threat_name.contains(" "))
+			threat_name = threat_name.replace(" ", "%20");
+		if(environment.contains(" "))
+			environment = environment.replace(" ", "%20");
 		
 		CairisURL = CAIRISHOME+"/api/risk_level/asset/threat_type/"+asset_name+"/"+threat_name+"/environment/"+environment;
 		
-		LogUtil.writeLog(transID, "Cairis module in action", 2);
+		LogUtil.writeLog(transID, "cairis module in action", 2);
 
 		// Execution of the core part of the module
 		int_risk_value = CairisEngine.coreExecute(CairisURL, transID, authURL, CAIRISdb);
@@ -255,9 +256,9 @@ public class CairisService {
 		
 		end TEST */
 		
-		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ") + " given threat " 
-				+ threat_name.replace("%20", " ") + " with "+environment.replace("%20", " ")
-				+" as environment is " + int_risk_value + "\n");
+//		System.out.println("\nHighest risk for " + asset_name.replace("%20", " ") + " given threat " 
+//				+ threat_name.replace("%20", " ") + " with "+environment.replace("%20", " ")
+//				+" as environment is " + int_risk_value + "\n");
 		
 		LogUtil.writeLog(transID, "\nAsset: "+asset_name.replace("%20", " ")
 				+ "\nThreat: "+threat_name.replace("%20", " ")
@@ -266,14 +267,11 @@ public class CairisService {
 				+ "\nHighest risk is: "+int_risk_value, 2);
 	
 		boolean accepted = EvaluationMethods.evaluateThreshold(int_risk_value, threshold, transID);	
-	
+		
 		return DataUtil.buildResponse(DataUtil.getJSONFromBool(accepted));
 
 	}
 	
 
-	
-	
-	
 }
 	

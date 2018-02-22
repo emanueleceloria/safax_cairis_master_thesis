@@ -83,10 +83,9 @@ public class CairisEngine {
 		System.out.println("CAIRIS session obtained by the user: "+cairisUsername);
 		LogUtil.writeLog(transID, "CAIRIS session obtained by the user: "+cairisUsername, 2);
 
-
-		response=CAIRISRetrievalMethods.getRisk(response, CairisURL, CAIRISdb, cairisDB, transID);
-
 		/////	End HTTP BASIC AUTHENTICATION
+		
+		response=CAIRISRetrievalMethods.getRisk(response, CairisURL, CAIRISdb, cairisDB, transID);
 
 		if (response.getStatus() != 200){
 			LogUtil.errorlog(transID, "Risk could not be retrieved : HTTP error code : "

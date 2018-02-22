@@ -114,16 +114,6 @@ public class DataUtil {
 		return j;
 	}
 	
-	public static String generalResponseWithCookieInfo(String status, String message, String data, String cookie){
-		JSONObject json=new JSONObject();
-		
-		asMap(json).put("response", status);
-		asMap(json).put("message", message);
-		asMap(json).put("data", data);
-		asMap(json).put("cookie", cookie);
-		return json.toString();
-	}
-	
 	public static Response buildResponse(JSONObject json){
 		return Response.status(200).entity(json.toJSONString()).build();
 	}
