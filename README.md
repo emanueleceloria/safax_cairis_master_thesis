@@ -1,7 +1,7 @@
 # safax_cairis_master_thesis
 Code developed to support the integration between CAIRIS and SAFAX projects
 
-- Folder named "cairis" represents the cairis module implemented on Safax
+- Folder named "cairis" represents the cairis module implemented on SAFAX
 
 - Folder named "sfx" contains SAFAX's "sfx" folder files modified
 
