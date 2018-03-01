@@ -8,7 +8,7 @@
 			AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"
 			DataType="http://www.w3.org/2001/XMLSchema#string">
 			<AttributeValue>
-				ICT_Application
+				ICT Application
 			</AttributeValue>
 		</Attribute>
 	</Resource>
